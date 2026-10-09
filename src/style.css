@@ -163,28 +163,46 @@ h1 span {
 }
 
 .resumen-partida {
+  display: grid;
+  grid-template-areas: "intento progreso racha puntaje record";
+  grid-template-columns: auto minmax(60px, 1fr) auto auto auto;
   min-height: 78px;
-  justify-content: space-between;
-  gap: 24px;
+  align-items: center;
+  gap: 18px;
   padding: 16px 26px;
   border-bottom: 1px solid var(--borde);
   background: rgb(255 255 255 / 1.2%);
 }
 
 .dato-partida {
-  min-width: 93px;
+  min-width: 0;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
 }
 
+.dato-intento {
+  grid-area: intento;
+}
+
+.dato-racha {
+  grid-area: racha;
+}
+
 .dato-puntaje {
+  grid-area: puntaje;
+  align-items: flex-end;
+}
+
+.dato-record {
+  grid-area: record;
   align-items: flex-end;
 }
 
 .etiqueta-dato {
   color: var(--texto-secundario);
   font-size: 9px;
+  white-space: nowrap;
 }
 
 .dato-partida strong {
@@ -208,9 +226,43 @@ h1 span {
   color: #687589;
 }
 
+.bono-acumulado {
+  color: var(--verde);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.dato-record strong {
+  color: var(--cian);
+}
+
+.nuevo-record strong {
+  color: var(--verde);
+}
+
+.aviso-nuevo-record {
+  color: var(--verde);
+  font-size: 9px;
+  font-weight: 750;
+  white-space: nowrap;
+  animation: resplandor-record 1s ease-in-out infinite alternate;
+}
+
+@keyframes resplandor-record {
+  from {
+    opacity: 0.65;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
 .progreso {
+  grid-area: progreso;
   display: flex;
-  flex: 1;
   justify-content: center;
   gap: 7px;
 }
@@ -229,6 +281,76 @@ h1 span {
 .paso-progreso.actual {
   background: var(--cian);
   box-shadow: 0 0 12px rgb(34 211 238 / 38%);
+}
+
+.reloj-cuenta-regresiva {
+  padding: 17px 42px 0;
+}
+
+.cabecera-reloj {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.etiqueta-reloj {
+  color: var(--texto-secundario);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+}
+
+.tiempo-restante {
+  color: var(--cian);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+}
+
+.barra-tiempo-fondo {
+  overflow: hidden;
+  height: 6px;
+  border-radius: 999px;
+  background: #263244;
+}
+
+.barra-tiempo-progreso {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0891b2, var(--cian));
+  box-shadow: 0 0 12px rgb(34 211 238 / 35%);
+  transition: width 60ms linear, background-color 160ms ease;
+}
+
+.ayuda-bonificacion {
+  display: block;
+  margin-top: 7px;
+  color: #7b8a9e;
+  font-size: 10px;
+  text-align: right;
+}
+
+.reloj-cuenta-regresiva.advertencia .tiempo-restante {
+  color: var(--rojo);
+  animation: pulso-advertencia 700ms ease-in-out infinite alternate;
+}
+
+.reloj-cuenta-regresiva.advertencia .barra-tiempo-progreso {
+  background: var(--rojo);
+  box-shadow: 0 0 12px rgb(248 113 113 / 45%);
+  animation: pulso-advertencia 700ms ease-in-out infinite alternate;
+}
+
+@keyframes pulso-advertencia {
+  from {
+    opacity: 0.65;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .contenido-pregunta {
@@ -476,21 +598,39 @@ kbd {
   }
 
   .resumen-partida {
+    grid-template-areas:
+      "intento racha"
+      "puntaje record"
+      "progreso progreso";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     min-height: 70px;
-    gap: 10px;
+    gap: 12px 10px;
     padding: 13px 15px;
   }
 
   .dato-partida {
-    min-width: 66px;
+    min-width: 0;
+  }
+
+  .dato-puntaje,
+  .dato-record {
+    align-items: flex-start;
   }
 
   .dato-partida strong {
     font-size: 17px;
   }
 
+  .progreso {
+    justify-content: space-between;
+  }
+
   .paso-progreso {
     width: 18px;
+  }
+
+  .reloj-cuenta-regresiva {
+    padding: 15px 17px 0;
   }
 
   .contenido-pregunta {
