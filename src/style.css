@@ -27,6 +27,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  overflow-x: clip;
   background:
     radial-gradient(ellipse at 50% 26%, rgb(34 211 238 / 6%), transparent 36rem),
     var(--fondo);
@@ -136,10 +137,11 @@ p {
 h1 {
   margin-bottom: 10px;
   color: var(--texto);
-  font-size: clamp(32px, 6vw, 48px);
+  font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 760;
   letter-spacing: -0.055em;
   line-height: 1.08;
+  overflow-wrap: anywhere;
 }
 
 h1 span {
@@ -365,12 +367,14 @@ h1 span {
 }
 
 .contenido-pregunta > h2 {
+  min-width: 0;
   margin: 0;
   color: var(--texto);
-  font-size: clamp(32px, 6vw, 42px);
+  font-size: clamp(1.75rem, 6vw, 2.625rem);
   font-weight: 740;
   letter-spacing: -0.045em;
   line-height: 1.2;
+  overflow-wrap: anywhere;
   text-align: center;
 }
 
@@ -388,7 +392,7 @@ h1 span {
 
 .opcion {
   display: grid;
-  min-height: 56px;
+  min-height: 60px;
   grid-template-columns: 30px minmax(0, 1fr) 20px;
   align-items: center;
   gap: 12px;
@@ -398,9 +402,11 @@ h1 span {
   color: #d0d9e6;
   background: #111a27;
   cursor: pointer;
-  font-size: 13px;
+  font-size: clamp(0.8125rem, 3.4vw, 0.875rem);
   line-height: 1.5;
+  overflow-wrap: anywhere;
   text-align: left;
+  touch-action: manipulation;
   transition: border-color 140ms ease, background-color 140ms ease, transform 140ms ease;
 }
 
@@ -480,7 +486,7 @@ h1 span {
 
 .boton-principal {
   display: inline-flex;
-  min-height: 46px;
+  min-height: 48px;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
@@ -493,6 +499,7 @@ h1 span {
   cursor: pointer;
   font-size: 13px;
   font-weight: 750;
+  touch-action: manipulation;
   transition: filter 140ms ease, transform 140ms ease, opacity 140ms ease;
 }
 
@@ -638,17 +645,17 @@ kbd {
   }
 
   .opcion {
-    min-height: 60px;
+    min-height: 64px;
     grid-template-columns: 29px minmax(0, 1fr) 18px;
-    gap: 9px;
+    gap: 10px;
     padding: 10px;
-    font-size: 12px;
+    font-size: clamp(0.8125rem, 3.6vw, 0.875rem);
   }
 
   .pie-pregunta {
     align-items: stretch;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 
   .mensaje-respuesta {
@@ -657,6 +664,10 @@ kbd {
 
   .boton-siguiente {
     width: 100%;
+  }
+
+  .boton-reiniciar {
+    width: min(100%, 280px);
   }
 
   .pie-pagina {
