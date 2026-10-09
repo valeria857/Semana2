@@ -125,7 +125,7 @@ function cargarPregunta(estado: EstadoPartida, datos: DatosInternos): void {
   estado.pregunta = preguntaPreparada.publica
 }
 
-export function crearPartida(semilla = CONFIG.semillaPredeterminada): EstadoPartida {
+export function crearPartida(semilla: number = CONFIG.semillaPredeterminada): EstadoPartida {
   const preguntas = prepararPreguntas(semilla)
   const estado: EstadoPartida = {
     semilla,
